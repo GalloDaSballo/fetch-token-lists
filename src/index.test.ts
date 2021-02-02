@@ -1,39 +1,35 @@
-import { Cart, ProductInCart } from "./types";
-import { getPrice, getQuantity, getTotal } from "./index";
+import { ethers } from "ethers";
+import fetch from "isomorphic-fetch";
+import getTokenList from "./utils";
 
-const PRODUCT_ONE: ProductInCart = {
-  price: 12,
-  quantity: 1,
-};
-
-const PRODUCT_TWO: ProductInCart = {
-  price: 22,
-  quantity: 2,
-};
-
-const CART: Cart = [PRODUCT_ONE, PRODUCT_TWO];
-
-describe("getPrice", () => {
-  it("PRODUCT_ONE has a price of 12", () => {
-    expect(getPrice(PRODUCT_ONE)).toBe(12);
+describe("getTokenList", () => {
+  test("Token List from 1inch works with Uni worker", async () => {
+    const provider = ethers.getDefaultProvider();
+    const uniList = await getTokenList("tokens.1inch.eth", provider);
+    const fromUniRes = await fetch(
+      "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link"
+    );
+    const fromUni = await fromUniRes.json();
+    expect(uniList).toMatchObject(fromUni);
+  });
+  test("Token List from 1inch works with .eth.link dns", async () => {
+    const provider = ethers.getDefaultProvider();
+    const uniList = await getTokenList("tokens.1inch.eth", provider);
+    const fromEthRes = await fetch("http://tokens.1inch.eth.link");
+    const fromEth = await fromEthRes.json();
+    expect(uniList).toMatchObject(fromEth);
   });
 
-  it("PRODUCT_TWO has a price of 22", () => {
-    expect(getPrice(PRODUCT_TWO)).toBe(22);
-  });
-});
-
-describe("getQuantity", () => {
-  it("PRODUCT_ONE has a quantity of 1", () => {
-    expect(getQuantity(PRODUCT_ONE)).toBe(1);
-  });
-  it("PRODUCT_TWO has a quantity of 2", () => {
-    expect(getQuantity(PRODUCT_TWO)).toBe(2);
-  });
-});
-
-describe("getTotal", () => {
-  it("Cart total is 56", () => {
-    expect(getTotal(CART)).toBe(56);
+  test("Expect Token List for Json Lists to work", async () => {
+    const provider = ethers.getDefaultProvider();
+    const uniList = await getTokenList(
+      "https://tokens.coingecko.com/uniswap/all.json",
+      provider
+    );
+    const fromServiceWorkerRes = await fetch(
+      "https://tokens.coingecko.com/uniswap/all.json"
+    );
+    const fromServiceWorker = await fromServiceWorkerRes.json();
+    expect(uniList).toMatchObject(fromServiceWorker);
   });
 });

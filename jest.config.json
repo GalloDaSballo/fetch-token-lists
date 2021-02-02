@@ -1,4 +1,6 @@
 {
   "preset": "ts-jest",
-  "testEnvironment": "node"
+  "testEnvironment": "node",
+  "testTimeout": 60000,
+  "testPathIgnorePatterns": ["<rootDir>/lib/*"]
 }

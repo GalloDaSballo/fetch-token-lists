@@ -1,33 +1,33 @@
-# Typescript Package Starter
+# get-token-list
 
-A starter template to start your package with typescript
+Retrieve a tokenList given a HTTP or .eth url
 
-It uses typescript, eslint and jest
+### Install 
 
-TS: Easy coding
-EsLint: Easy Formatting
-Jest: Confident Testing
-JSDoc: Free Documentation (as long as you add comments)
+```
+yarn add get-token-list
+```
 
-## Usage
+## Use 
 
-Use it as template
+```javascript
+import getTokenList from from "get-token-list"
 
-Build your own stuff
+const provider = ethers.getDefaultProvider() // Set up a provider we can pass
+const list = await getTokenList("tokens.1inch.eth", provider)
 
-## Scripts
+```
 
-### build
-Build the package with TS
+## Where to get token lists?
 
-### test
-Run jest on your test files
+https://tokenlists.org/
 
-### lint
-Lint your files
+## Credits
 
-### lint:fix
-Lint and fix what can be fixed
+This is a 1-1 scrape of the code from Uniswap Interface: https://github.com/Uniswap/uniswap-interface
 
-### doc
-Generate docs with JsDoc
+## Considerations
+
+This code should be refactored
+
+Also since we have access to the .eth.link we may want to use that as the default and use ENS as fallback
