@@ -18,7 +18,7 @@
     "test": "jest",
     "lint": "eslint src/. --ext ts --ext tsx --ext js",
     "lint:fix": "eslint src/. --ext ts --ext tsx --ext js --fix",
-    "doc": "tsc && jsdoc -c ./.jsdoc.json"
+    "doc": "jsdoc -c ./.jsdoc.json"
   },
   "dependencies": {
     "@uniswap/token-lists": "^1.0.0-beta.19",

@@ -104,7 +104,7 @@
     
 
     
-    <h4 class="name" id="getPrice"><span class="type-signature"></span>getPrice<span class="signature">(product)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="contenthashToUri"><span class="type-signature"></span>contenthashToUri<span class="signature">(contenthash)</span><span class="type-signature"></span></h4>
     
 
     
@@ -112,7 +112,7 @@
 
 
 <div class="description">
-    Given a product, return it's price
+    Returns the URI representation of the content hash for supported codecs
 </div>
 
 
@@ -148,7 +148,7 @@
 
         <tr>
             
-                <td class="name"><code>product</code></td>
+                <td class="name"><code>contenthash</code></td>
             
 
             <td class="type">
@@ -159,7 +159,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">to decode</td>
         </tr>
 
     
@@ -200,7 +200,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line8">line 8</a>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line102">line 102</a>
     </li></ul></dd>
     
 
@@ -236,7 +236,7 @@
     
 
     
-    <h4 class="name" id="getQuantity"><span class="type-signature"></span>getQuantity<span class="signature">(product)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="internalGetTokenList"><span class="type-signature"></span>internalGetTokenList<span class="signature">(listUrl, resolveENSContentHash)</span><span class="type-signature"></span></h4>
     
 
     
@@ -244,7 +244,7 @@
 
 
 <div class="description">
-    Given a product in a cart, return it's quantity
+    Contains the logic for resolving a list URL to a validated token list
 </div>
 
 
@@ -280,7 +280,7 @@
 
         <tr>
             
-                <td class="name"><code>product</code></td>
+                <td class="name"><code>listUrl</code></td>
             
 
             <td class="type">
@@ -291,7 +291,25 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">list url</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>resolveENSContentHash</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">resolves an ens name to a contenthash</td>
         </tr>
 
     
@@ -332,7 +350,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line14">line 14</a>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line131">line 131</a>
     </li></ul></dd>
     
 
@@ -368,7 +386,7 @@
     
 
     
-    <h4 class="name" id="getTotal"><span class="type-signature"></span>getTotal<span class="signature">(cart)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="resolveENSContentHash"><span class="type-signature"></span>resolveENSContentHash<span class="signature">(ensName, provider)</span><span class="type-signature"></span></h4>
     
 
     
@@ -376,7 +394,7 @@
 
 
 <div class="description">
-    Given a cart, return the total cost of the products it contains
+    Fetches and decodes the result of an ENS contenthash lookup on mainnet to a URI
 </div>
 
 
@@ -412,7 +430,7 @@
 
         <tr>
             
-                <td class="name"><code>cart</code></td>
+                <td class="name"><code>ensName</code></td>
             
 
             <td class="type">
@@ -423,7 +441,25 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">to resolve</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>provider</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">provider to use to fetch the data</td>
         </tr>
 
     
@@ -464,7 +500,139 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line20">line 20</a>
+        <a href="resolveENSContentHash.js.html">resolveENSContentHash.js</a>, <a href="resolveENSContentHash.js.html#line94">line 94</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="uriToHttp"><span class="type-signature"></span>uriToHttp<span class="signature">(uri)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Given a URI that may be ipfs, ipns, http, or https protocol, return the fetch-able http(s) URLs for the same content
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>uri</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">to convert to fetch-able http url</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils.js.html">utils.js</a>, <a href="utils.js.html#line61">line 61</a>
     </li></ul></dd>
     
 
@@ -510,13 +678,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getPrice">getPrice</a></li><li><a href="global.html#getQuantity">getQuantity</a></li><li><a href="global.html#getTotal">getTotal</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#contenthashToUri">contenthashToUri</a></li><li><a href="global.html#internalGetTokenList">internalGetTokenList</a></li><li><a href="global.html#resolveENSContentHash">resolveENSContentHash</a></li><li><a href="global.html#uriToHttp">uriToHttp</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Wed Jan 27 2021 00:11:58 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Wed Feb 03 2021 13:51:04 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
