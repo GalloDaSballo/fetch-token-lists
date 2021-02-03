@@ -11,7 +11,7 @@ yarn add get-token-list
 ## Use 
 
 ```javascript
-import getTokenList from from "get-token-list"
+import getTokenList from "get-token-list"
 
 const provider = ethers.getDefaultProvider() // Set up a provider we can pass
 const list = await getTokenList("tokens.1inch.eth", provider)
